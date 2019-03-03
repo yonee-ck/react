@@ -7,11 +7,18 @@ class PhoneInfoList extends Component {
         data: []
     }
     render() {
-        const { data } = this.props;
+        const { data, onRemove, onUpdate } = this.props;
         // info들의 배열을 가지고 phoneinfo component로 변환해줌. 그것을 렌더링
+        // key를 설정 안할 경우 배열의 index가 키값으로 설정. but key가 없다고 콘솔 에러.
         const list = data.map(
-            // key를 설정 안할 경우 배열의 index가 키값으로 설정. but key가 없다고 콘솔 에러.
-            info => (<PhoneInfo info={info} key={info.id} />)
+            info => (
+                <PhoneInfo
+                    onRemove={onRemove}
+                    onUpdate={onUpdate}
+                    info={info}
+                    key={info.id}
+                />
+            )
         );
         return (
             <div>
